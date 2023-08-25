@@ -73,13 +73,11 @@ compute_neighbor_graph_by_well <- function(
           tidyr::nesting(
             cell1_well_index,
             cell1_well_x,
-            cell1_well_y,
-	    cell1_number),
+            cell1_well_y),
           tidyr::nesting(
             cell2_well_index,
             cell2_well_x,
-            cell2_well_y,
-	    cell2_number)) |>
+            cell2_well_y)) |>
         dplyr::filter(
           cell1_well_x > max_neighbor_distance_pixels,
           cell1_well_x < well_width_pixels - max_neighbor_distance_pixels,

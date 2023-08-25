@@ -2,25 +2,25 @@
 library(tidyverse)
 library(arrow)
 
-source("scripts/compute_spatial_features.R")
+source("BIDS-TP_Hackathon_2023/scripts/craut/compute_spatial_features.R")
 
 cell_features_TS2PL1 <- arrow::read_parquet(
-    file = "data/TS2PL1_Cell_MasterDataTable.parquet") |>
+    file = "BIDS-TP_Hackathon_2023/data/TS2PL1_Cell_MasterDataTable-001.parquet") |>
   compute_well_coordinates()
 
 cell_feature_columns <- readr::read_tsv(
-  "data/cell_feature_columns_TS_202008.tsv",
+  "BIDS-TP_Hackathon_2023/data/cell_feature_columns_TS_202008.tsv",
   show_col_types = FALSE)
 
 cell_metadata_columns <- readr::read_tsv(
-  "data/cell_metadata_columns_TS_202008.tsv",
+  "BIDS-TP_Hackathon_2023/data/cell_metadata_columns_TS_202008.tsv",
   show_col_types = FALSE)
 
 # for testing make this a smaller subset
 cell_features_rel <- cell_features_TS2PL1 |>
   dplyr::filter(time_point == "Uninfected")
-rm(cell_features_TS2PL1)
-gc()
+#rm(cell_features_TS2PL1)
+#gc()
 
 # generate neighbor graph
 neighbor_graph <- cell_features_TS2PL1 |>
@@ -108,7 +108,7 @@ plot <- ggplot2::ggplot(
   ggplot2::scale_y_continuous(paste0("Neighbor Cell Feature Value"))
 
 ggplot2::ggsave(
-  filename = paste0("product/correlation_uninfected_row1_column18_", feature, ".pdf"),
+  filename = paste0("BIDS-TP_Hackathon_2023/scripts/craut/correlation_uninfected_row1_column18_", feature, ".pdf"),
   plot = plot,
   width = 7,
   height = 7,
