@@ -16,6 +16,8 @@ Install the following R packages using `install.packages()`:
 
 ## Description of data
 
+[drive link for the data](https://drive.google.com/drive/folders/1aC2mSJEQbKR0IL0fUK0ryCAZuuFcMzqU)
+
 #### data/TS2PL1_Cell_MasterDataTable.parquet
 703 morphological features for 1,698,930 huh-7 hepatocyte cells. Each
 cell is contained in one of 9 fields of view in one of 384 wells.
